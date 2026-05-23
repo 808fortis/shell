@@ -23,6 +23,18 @@ android {
         kotlinCompilerExtensionVersion = "1.5.8"
     }
 
+    val keystoreFile = file("keystore.jks")
+    if (keystoreFile.exists()) {
+        signingConfigs {
+            create("release") {
+                storeFile = keystoreFile
+                storePassword = "shell123"
+                keyAlias = "shell"
+                keyPassword = "shell123"
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -30,6 +42,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            if (keystoreFile.exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
         debug {
             isMinifyEnabled = false

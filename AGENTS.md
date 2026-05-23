@@ -33,6 +33,10 @@ No tests, no lint, no formatter — `assemble` is the only verification step.
 - Shizuku artifacts use **`dev.rikka.shizuku`** groupId (not `rikka.shizuku`)
 - Extra Maven repo: `https://maven.aliucord.com/snapshots` (defined in `settings.gradle.kts`)
 - `local.properties` is gitignored — must exist locally with `sdk.dir` for builds
+- **Release signing** uses `app/keystore.jks` (gitignored); CI builds without it (unsigned). Generate with:
+  ```bash
+  keytool -genkey -v -keystore app/keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias shell -storepass shell123 -keypass shell123 -dname "CN=Shell, OU=Dev, O=Shell, L=Unknown, ST=Unknown, C=US"
+  ```
 
 ## CI
 
