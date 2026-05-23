@@ -415,6 +415,7 @@ private fun SettingsBottomSheet(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SettingsProviderCard(
     icon: ImageVector,

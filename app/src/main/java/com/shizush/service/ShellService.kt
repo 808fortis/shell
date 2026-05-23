@@ -50,7 +50,7 @@ class ShellService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Shell Terminal")
             .setContentText("Shell session is running")
-            .setSmallIcon(android.R.drawable.ic_menu_console)
+            .setSmallIcon(android.R.drawable.ic_menu_compass)
             .setContentIntent(pendingIntent)
             .setOngoing(true)
             .build()
