@@ -233,6 +233,7 @@ fun MainScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun StatusCard(
     provider: ShellProvider,
@@ -245,7 +246,7 @@ private fun StatusCard(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         ),
     ) {
         Row(
@@ -382,7 +383,7 @@ private fun SettingsBottomSheet(
             )
             Spacer(Modifier.height(24.dp))
 
-            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
+            Divider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
             Spacer(Modifier.height(16.dp))
 
             Row(
@@ -430,7 +431,7 @@ private fun SettingsProviderCard(
             containerColor = if (selected)
                 MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
             else
-                MaterialTheme.colorScheme.surfaceContainerHigh
+                MaterialTheme.colorScheme.surfaceVariant
         ),
         border = if (selected)
             androidx.compose.foundation.BorderStroke(

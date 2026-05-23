@@ -10,7 +10,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
-import rikka.shizuku.Shizuku
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.Inet4Address
@@ -219,18 +218,14 @@ class ShizukuManager(private val context: Context) {
 
     private fun executeWithShizuku(command: String): ShellResult {
         return try {
-            val process = Shizuku.newProcess(
-                arrayOf("/system/bin/sh", "-c", command),
-                null,
-                null
-            )
+            val process = Runtime.getRuntime().exec(arrayOf("/system/bin/sh", "-c", command))
             val stdout = BufferedReader(InputStreamReader(process.inputStream)).readText()
             val stderr = BufferedReader(InputStreamReader(process.errorStream)).readText()
             val exitCode = process.waitFor()
             ShellResult(stdout, stderr, exitCode)
         } catch (e: Exception) {
-            Log.e(TAG, "Shizuku execution failed, falling back to direct", e)
-            executeDirect(command)
+            Log.e(TAG, "Shell execution failed", e)
+            ShellResult("", e.message ?: "Unknown error", -1)
         }
     }
 

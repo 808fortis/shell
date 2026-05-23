@@ -27,6 +27,8 @@ val OnSurfaceDark = Color(0xFFE3E2E6)
 val SurfaceContainerDark = Color(0xFF1E2025)
 val SurfaceVariantDark = Color(0xFF44474E)
 
+val TerminalSurface = Color(0xFF313244)
+
 val StatusConnected = Color(0xFF4CC38A)
 val StatusDisconnected = Color(0xFFFF5449)
 val StatusWarning = Color(0xFFFFB74D)

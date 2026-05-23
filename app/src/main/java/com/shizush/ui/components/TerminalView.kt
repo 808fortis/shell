@@ -1,8 +1,5 @@
 package com.shizush.ui.components
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -92,14 +89,9 @@ fun TerminalView(
                 }
             }
 
-            AnimatedVisibility(
-                visible = isExecuting,
-                modifier = Modifier.align(Alignment.TopCenter),
-                enter = fadeIn(),
-                exit = fadeOut()
-            ) {
+            if (isExecuting) {
                 LinearProgressIndicator(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
                     color = TerminalGreen,
                     trackColor = Color.Transparent,
                 )
@@ -139,7 +131,7 @@ fun TerminalView(
             }
         )
 
-        HorizontalDivider(
+        Divider(
             color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f),
             thickness = 0.5.dp
         )
